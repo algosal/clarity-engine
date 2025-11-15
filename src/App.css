@@ -1,38 +1,134 @@
+/* src/App.css */
+
+/* Reset and base styling */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root,
 .App {
-  text-align: center;
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden; /* no horizontal scrollbar */
+  background-color: #0a0f24; /* dark, clean background */
+  font-family: "Inter", sans-serif;
+  color: #f8f9fc;
+  line-height: 1.6;
+}
+/* Hide scrollbar for WebKit browsers */
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent; /* optional: just to be safe */
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* Hide scrollbar for Firefox */
+* {
+  scrollbar-width: none;
+  -ms-overflow-style: none; /* IE 10+ */
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* Optional: still allow scrolling */
+body {
+  overflow: auto;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* App container */
+.App {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  padding: 2rem;
+  min-height: 100vh; /* allows scrolling if content overflows vertically */
 }
 
-.App-link {
-  color: #61dafb;
+/* Scrollbar styling (optional, clean and minimal) */
+body::-webkit-scrollbar {
+  width: 8px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+body::-webkit-scrollbar-track {
+  background: #0a0f24;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: #00ffff;
+  border-radius: 4px;
+  border: 2px solid #0a0f24;
+}
+
+/* Links and interactive elements */
+a {
+  color: #ffd700;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #00ffff;
+  transition: color 0.2s ease-in-out;
+}
+
+/* Headings */
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-weight: 600;
+  color: #ffd700;
+}
+
+/* Paragraphs */
+p {
+  margin-bottom: 1rem;
+  color: #f8f9fc;
+}
+
+/* Clean container styling */
+.container {
+  max-width: 1200px;
+  width: 100%;
+  padding: 1rem;
+}
+
+/* Optional utility classes */
+.text-cyan {
+  color: #00ffff;
+}
+
+.text-gold {
+  color: #ffd700;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.mt-1 {
+  margin-top: 0.5rem;
+}
+.mt-2 {
+  margin-top: 1rem;
+}
+.mt-3 {
+  margin-top: 1.5rem;
+}
+.mt-4 {
+  margin-top: 2rem;
+}
+
+.mb-1 {
+  margin-bottom: 0.5rem;
+}
+.mb-2 {
+  margin-bottom: 1rem;
+}
+.mb-3 {
+  margin-bottom: 1.5rem;
+}
+.mb-4 {
+  margin-bottom: 2rem;
 }

@@ -1,0 +1,47 @@
+/* src/components/TrashClutterDefinition/TrashClutterDefinition.css */
+
+.definition-container {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 1rem;
+  font-family: "Inter", sans-serif;
+  color: #f8f9fc;
+  background-color: #0a0f24;
+  border-radius: 12px;
+}
+
+.definition-title {
+  text-align: center;
+  font-size: 2rem;
+  color: #ffd700;
+  margin-bottom: 2rem;
+}
+
+.definition-card {
+  background-color: #1f2a48;
+  border-left: 4px solid #00ffff;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  border-radius: 8px;
+}
+
+.definition-card h2 {
+  color: #ffd700;
+  margin-bottom: 0.5rem;
+}
+
+.description {
+  margin-bottom: 0.5rem;
+}
+
+.energy-effect,
+.action,
+.summary {
+  margin-bottom: 0.25rem;
+  font-size: 0.95rem;
+}
+
+.energy-effect strong,
+.action strong {
+  color: #00ffff;
+}

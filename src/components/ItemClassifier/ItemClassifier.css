@@ -1,0 +1,233 @@
+/* src/components/ItemClassifier/ItemClassifier.css */
+
+.classifier-container {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 1rem;
+}
+
+.item-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+/* Input and textarea styling */
+.item-form input[type="text"],
+.item-form textarea,
+.item-form input[type="number"] {
+  width: 100%; /* all inputs same width */
+  padding: 0.5rem;
+  border-radius: 6px;
+  border: 1px solid #00ffff;
+  background-color: #1f2a48;
+  color: #f8f9fc;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+.item-form textarea {
+  resize: vertical;
+  min-height: 60px;
+}
+
+/* Labels: stack label text + tooltip above input */
+.item-form label {
+  display: flex;
+  flex-direction: column; /* stack label and input */
+  align-items: flex-start; /* left align everything */
+  gap: 4px; /* space between label+icon and input */
+  font-weight: 500;
+  color: #f8f9fc;
+}
+
+/* Wrap label text + tooltip icon */
+.label-text {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Tooltip icon */
+.item-form span[data-tooltip-id] {
+  cursor: pointer;
+  color: #00ffff;
+  font-size: 16px;
+}
+
+/* Tooltip text wrapping for mobile / smaller screens */
+[data-tooltip-id] {
+  white-space: normal; /* allow text to wrap */
+  word-wrap: break-word; /* break long words if needed */
+  max-width: 220px; /* limit width on desktop */
+}
+
+/* Mobile-specific adjustments */
+@media (max-width: 768px) {
+  [data-tooltip-id] {
+    max-width: 70vw; /* tooltip width adapts to viewport */
+    word-wrap: break-word;
+  }
+}
+
+/* Checkbox styling: align nicely with label text */
+.item-form input[type="checkbox"] {
+  transform: scale(1.2);
+  margin-top: 0.25rem;
+}
+
+/* Submit button */
+.item-form button {
+  padding: 0.75rem;
+  font-weight: 600;
+  color: #0a0f24;
+  background-color: #00ffff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.item-form button:hover {
+  background-color: #ffd700;
+  color: #0a0f24;
+}
+
+/* Classified items */
+.classified-items {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.item-card {
+  background-color: #1f2a48;
+  border-left: 4px solid #00ffff;
+  padding: 1rem;
+  border-radius: 8px;
+  text-align: left;
+}
+
+.item-card.trash {
+  border-left-color: #ff4d4f;
+}
+
+.item-card.clutter {
+  border-left-color: #00ffff;
+}
+
+.item-card.keep {
+  border-left-color: #ffd700;
+}
+
+.item-card h3 {
+  margin-bottom: 0.5rem;
+}
+
+.item-card p {
+  margin: 0.25rem 0;
+}
+
+/* ===== Mobile Responsive ===== */
+@media (max-width: 600px) {
+  .classifier-container {
+    padding: 0.5rem;
+  }
+
+  .item-form {
+    gap: 1rem;
+  }
+
+  /* Label text and tooltip stays in row, wrap if needed */
+  .label-text {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+
+  /* All inputs, textarea, checkbox, button same width */
+  .item-form input[type="text"],
+  .item-form textarea,
+  .item-form input[type="number"],
+  .item-form input[type="checkbox"],
+  .item-form button {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  /* Checkbox: push below label text for uniform width */
+  .item-form input[type="checkbox"] {
+    margin-top: 0.25rem;
+    transform: scale(1.2);
+  }
+
+  /* Buttons full width */
+  /* Button same width as inputs */
+  .item-form button {
+    width: 100%; /* take full width of container */
+    max-width: 100%; /* prevent it from exceeding container */
+    padding: 0.75rem; /* maintain height */
+    box-sizing: border-box; /* include padding in width */
+    font-weight: 600;
+    color: #0a0f24;
+    background-color: #00ffff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+  }
+
+  .item-form button:hover {
+    background-color: #ffd700;
+    color: #0a0f24;
+  }
+
+  /* Classified items: all cards full width */
+  .classified-items {
+    gap: 0.75rem;
+  }
+
+  .item-card {
+    width: 100%;
+    padding: 0.75rem;
+  }
+}
+
+/* Dropdown styling */
+/* Dropdown full width like other inputs */
+/*  */
+
+.item-form select {
+  width: 100%; /* full width like other inputs */
+  flex: none; /* remove flex shrinking */
+  padding: 6px 8px;
+  border: 1px solid #00ffff;
+  border-radius: 6px;
+  background-color: #1f2a48;
+  color: #f8f9fc;
+  font-size: 1rem;
+  appearance: none;
+  cursor: pointer;
+}
+
+/* Keep mobile adjustment */
+@media (max-width: 768px) {
+  .item-form select {
+    width: 100%;
+  }
+
+  [data-tooltip-id] {
+    max-width: 70vw;
+  }
+}
+
+/* Mobile-specific adjustments */
+@media (max-width: 768px) {
+  [data-tooltip-id] {
+    max-width: 70vw; /* tooltip width adapts to viewport */
+    word-wrap: break-word;
+  }
+}
