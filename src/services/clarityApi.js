@@ -3,19 +3,23 @@ const API_URL =
   "https://54jek2d2rg.execute-api.us-east-2.amazonaws.com/Principles/clarity-engine";
 
 /**
- * Calls the Clarity Engine Lambda
- * @param {Object} payload - Object to send to Lambda
- * @param {string} method - HTTP method, default is POST
- * @returns {Promise<Object>} - JSON response
+ * Generic call to the Clarity Engine Lambda
+ * @param {string} method - "save" or "get"
+ * @param {object} bodyData - The object to send inside body (will be stringified)
  */
-export async function callClarityEngine(payload, method = "POST") {
+async function callClarityEngine(method, bodyData) {
   try {
+    const payload = {
+      httpMethod: method.toUpperCase() === "GET" ? "GET" : "POST",
+      body: JSON.stringify(bodyData), // <-- body stringified exactly like your example
+    };
+
     const response = await fetch(API_URL, {
-      method,
+      method: "POST", // we always POST to Lambda
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(payload),
+      body: JSON.stringify(payload), // <-- send the payload object as JSON
     });
 
     if (!response.ok) {
@@ -23,8 +27,7 @@ export async function callClarityEngine(payload, method = "POST") {
       throw new Error(`API error: ${response.status} ${text}`);
     }
 
-    const data = await response.json();
-    return data;
+    return await response.json();
   } catch (err) {
     console.error("Clarity API call error:", err);
     throw err;
@@ -33,32 +36,54 @@ export async function callClarityEngine(payload, method = "POST") {
 
 /**
  * Save or update a single item for a user
- * @param {string} userId
- * @param {string} epoch
- * @param {Object} itemData
  */
 export async function saveItem(userId, epoch, itemData) {
-  return callClarityEngine({
-    httpMethod: "POST",
-    body: {
-      userId,
-      epoch,
-      itemData,
+  const bodyData = {
+    userId: String(userId),
+    epoch: String(epoch),
+    itemData: {
+      ...itemData,
+      // ensure everything is a string to match your format
+      value: String(itemData.value),
+      emotionalAttachment: String(itemData.emotionalAttachment),
+      alignment: String(itemData.alignment),
+      easilyRebuyable: String(itemData.easilyRebuyable),
+      classification: String(itemData.classification),
+      trashReason: String(itemData.trashReason || ""),
+      justification: String(itemData.justification || ""),
+      score: String(itemData.score || ""),
+      recommendedPrinciple: String(itemData.recommendedPrinciple || ""),
+      aiSuggestion: String(itemData.aiSuggestion || ""), // <-- add this
     },
-  });
+  };
+
+  return callClarityEngine("POST", bodyData);
 }
 
 /**
- * Fetch items for a user starting from a specific epoch
- * @param {string} userId
- * @param {string} startEpoch
- */
-export async function getItems(userId, startEpoch = "0") {
-  return callClarityEngine({
-    httpMethod: "POST",
-    body: {
-      userId,
-      startEpoch,
-    },
-  });
-}
+ * Fetch items starting from a given epoch
+ * */
+
+export const getItems = async () => {
+  try {
+    const response = await fetch(API_URL, {
+      method: "POST", // using POST for get as per your setup
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ method: "get" }), // signal to lambda it's a get
+    });
+
+    if (!response.ok) {
+      throw new Error(`Error: ${response.status}`);
+    }
+
+    const data = await response.json();
+
+    // Lambda wraps actual items in `body` as string, so parse it
+    return JSON.parse(data.body);
+  } catch (error) {
+    console.error("Error fetching items:", error);
+    return [];
+  }
+};

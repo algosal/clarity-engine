@@ -68,6 +68,6 @@ export const classifyItem = (item) => {
     justification,
     score: parseFloat(score.toFixed(2)),
   };
-  console.log(classified);
+  // console.log(classified);
   return classified;
 };

@@ -5,7 +5,6 @@ import { Tooltip } from "react-tooltip";
 import "react-tooltip/dist/react-tooltip.css";
 import "./ItemClassifier.css";
 import { saveItem } from "../../services/clarityApi";
-import { getAiDecisionFromItem } from "../../services/contemplationApi";
 
 const ItemClassifier = () => {
   const [items, setItems] = useState([]);
@@ -17,9 +16,7 @@ const ItemClassifier = () => {
     alignment: 1,
     easilyRebuyable: false,
   });
-  const [aiResponse, setAiResponse] = useState(""); // AI decision display
-  const [recommendedPrinciple, setRecommendedPrinciple] = useState(""); // your principle
-  const [loadingAi, setLoadingAi] = useState(false);
+  const [recommendedPrinciple, setRecommendedPrinciple] = useState("");
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -41,40 +38,34 @@ const ItemClassifier = () => {
       alignment: 1,
       easilyRebuyable: false,
     });
-    setAiResponse(""); // clear AI response for new item
     setRecommendedPrinciple(""); // clear principle input for next item
   };
 
-  const latestItem = items.length > 0 ? items[items.length - 1] : null;
-
-  // Fetch AI decision for the latest item
-  const fetchAiOpinion = async () => {
-    if (!latestItem) return;
-    setLoadingAi(true);
-    const aiDecision = await getAiDecisionFromItem(latestItem);
-    setAiResponse(aiDecision || "AI returned no suggestion.");
-    setLoadingAi(false);
-  };
-
+  // inside handleSaveLatest
   const handleSaveLatest = async () => {
     if (!latestItem) return;
+
     const payload = {
       ...latestItem,
       recommendedPrinciple: recommendedPrinciple || "",
-      aiSuggestion: aiResponse || "", // new field for backend
     };
-    // console.log(payload);
+
+    console.log(payload);
 
     try {
+      // you can use any epoch logic here, e.g., timestamp string
       const epoch = Date.now().toString();
-      const userId = "salman";
+      const userId = "salman"; // replace with dynamic user if you implement auth
       await saveItem(userId, epoch, payload);
       alert("Latest item saved to Clarity Engine!");
     } catch (err) {
-      console.error(err);
       alert("Error saving item. Check console.");
+      console.error(err);
     }
   };
+
+  const latestItemExists = items.length > 0;
+  const latestItem = latestItemExists ? items[items.length - 1] : null;
 
   return (
     <div className="classifier-container">
@@ -104,7 +95,7 @@ const ItemClassifier = () => {
             Functional Value (0-1)
             <span
               data-tooltip-id="tooltip-functional"
-              data-tooltip-content="0 = completely useless, 1 = fully functional."
+              data-tooltip-content="0 = completely useless, 1 = fully functional. Even high-value items are pragmatically nonfunctional if you are not using them."
             >
               ℹ️
             </span>
@@ -128,7 +119,7 @@ const ItemClassifier = () => {
             Emotional Attachment (0-1)
             <span
               data-tooltip-id="tooltip-emotional"
-              data-tooltip-content="0 = no attachment, 1 = very attached."
+              data-tooltip-content="0 = no attachment, 1 = very attached. Reflects ego, nostalgia, or unresolved emotional ties — not always practical."
             >
               ℹ️
             </span>
@@ -152,7 +143,7 @@ const ItemClassifier = () => {
             Alignment (0-1)
             <span
               data-tooltip-id="tooltip-alignment"
-              data-tooltip-content="0 = completely misaligned, 1 = perfectly aligned."
+              data-tooltip-content="0 = completely misaligned, 1 = perfectly aligned. Measures how well the item fits your current environment, priorities, and purpose."
             >
               ℹ️
             </span>
@@ -176,7 +167,7 @@ const ItemClassifier = () => {
             Easily Rebuyable
             <span
               data-tooltip-id="tooltip-rebuyable"
-              data-tooltip-content="Select whether this item can be easily rebought."
+              data-tooltip-content="Select whether this item can be easily rebought. Even valuable items can be discarded if easily replaceable and not used."
             >
               ℹ️
             </span>
@@ -229,30 +220,10 @@ const ItemClassifier = () => {
               </div>
             ))}
 
+            {/* Recommended Principle & Save under last item */}
+            {/* Recommended Principle & Save under last item */}
             {latestItem && (
               <div className="save-section">
-                {/* AI Response textarea (read-only) */}
-
-                <label>
-                  <div className="label-text">AI Suggested Decision</div>
-                  <textarea
-                    className="ai-textarea"
-                    value={aiResponse}
-                    readOnly
-                    placeholder="Click 'Get AI Opinion' to fetch AI suggestion."
-                    rows={4}
-                  />
-                </label>
-
-                <button
-                  className="item-form-button"
-                  onClick={fetchAiOpinion}
-                  disabled={loadingAi}
-                >
-                  {loadingAi ? "Fetching AI Opinion..." : "Get AI Opinion"}
-                </button>
-
-                {/* Your principle input stays as-is */}
                 <label>
                   <div className="label-text">Recommended Principle</div>
                   <input
@@ -275,7 +246,6 @@ const ItemClassifier = () => {
                     onClick={() => {
                       setItems([]);
                       setRecommendedPrinciple("");
-                      setAiResponse("");
                     }}
                   >
                     Clear All Items

@@ -260,10 +260,30 @@
   font-size: 1rem;
   box-sizing: border-box;
 }
+/* AI Response Section */
+/* AI Response textarea styling (matches form input style but taller) */
+.ai-textarea {
+  width: 100%; /* match all other inputs */
+  max-width: 100%; /* never exceed container */
+  padding: 0.5rem; /* same padding as inputs */
+  border-radius: 6px;
+  border: 1px solid #00ffff;
+  background-color: #1f2a48;
+  color: #f8f9fc;
+  font-size: 1rem;
+  font-family: Inter, sans-serif;
+  box-sizing: border-box;
+  min-height: 120px;
+  resize: vertical;
+  line-height: 1.4;
+  margin-top: 0.25rem; /* space below label-text */
+}
 
-/* Keep mobile adjustment */
+/* Ensure AI textarea behaves on mobile */
 @media (max-width: 768px) {
-  .item-form select {
-    width: 100%;
+  .ai-textarea {
+    width: 100%; /* fill container on mobile */
+    padding: 0.5rem; /* maintain same padding as other inputs */
+    min-height: 100px; /* slightly smaller on mobile if needed */
   }
 }
