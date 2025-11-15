@@ -1,70 +1,101 @@
-# Getting Started with Create React App
+# Clarity Engine
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+**Clarity Engine** is a personal and psychological system designed to help you **distinguish between Trash and Clutter**, manage your belongings, and reduce mental load. This project lays the foundation for an **AI-assisted decision system** that evaluates items for practical, emotional, and energetic alignment.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## 🧠 Concept Overview
 
-### `npm start`
+### Trash
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **Definition:** Anything with zero remaining value or purpose.
+- **Effect:** Drains because it is dead weight.
+- **Action:** Remove immediately — it holds no functional or emotional benefit.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Clutter
 
-### `npm test`
+- **Definition:** Items we are not actively using but continue to keep because of emotional attachment, ego, nostalgia, memories of past relationships, or the belief that we might need them someday — even if they serve no current purpose.
+- **Additional:** Clutter also includes items that have value but are **not in the right place, quantity, or timing**.
+- **Effect:** Drains because it is potential energy with no direction.
+- **Action:** Reassign, reduce, or release depending on alignment.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+## 🎯 Purpose
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+The Clarity Engine helps answer:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1. **Is this item trash or clutter?**
+2. **What should I do with it today?**
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+This project is structured to later incorporate AI for:
 
-### `npm run eject`
+- Emotional and functional evaluation of items
+- Categorization
+- Personalized action recommendations
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+---
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## ⚡ Features (Planned)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- Core **Trash vs Clutter definitions** module
+- Interactive **item classification system**
+- **Decision tree** to guide reassign/reduce/release actions
+- **AI-ready architecture** for scoring and predictive recommendations
+- Future **visualizations** of clutter and energy flow
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+---
 
-## Learn More
+## 🛠 Tech Stack
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- **React (Create React App)**
+- **CSS Modules / Styled Components** (for theming)
+- **JavaScript / TypeScript**
+- Optional: **AI scoring module** (planned)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+---
 
-### Code Splitting
+## 🚀 Getting Started
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+1. Clone the repo:
+   ```bash
+   git clone https://github.com/algosal/clarity-engine.git
+   ```
 
-### Analyzing the Bundle Size
+````
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+2. Install dependencies:
 
-### Making a Progressive Web App
+   ```bash
+   npm install
+   ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+3. Run locally:
 
-### Advanced Configuration
+   ```bash
+   npm start
+   ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+4. Open [http://localhost:3000](http://localhost:3000) to view in browser.
 
-### Deployment
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## 🔮 Future Roadmap
 
-### `npm run build` fails to minify
+- [ ] Interactive Trash/Clutter evaluation component
+- [ ] Item database and state management
+- [ ] AI scoring integration for emotional and functional value
+- [ ] Visualization dashboards for space and mental load
+- [ ] Mobile-friendly interface
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+---
+
+## 📜 License
+
+MIT License
+
+```
+
+---
+```
+````
