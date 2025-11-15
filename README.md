@@ -58,11 +58,10 @@ This project is structured to later incorporate AI for:
 ## 🚀 Getting Started
 
 1. Clone the repo:
+
    ```bash
    git clone https://github.com/algosal/clarity-engine.git
    ```
-
-````
 
 2. Install dependencies:
 
@@ -98,4 +97,7 @@ MIT License
 
 ---
 ```
-````
+
+```
+
+```
