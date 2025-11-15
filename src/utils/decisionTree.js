@@ -61,11 +61,13 @@ export const classifyItem = (item) => {
       "The item has some utility or emotional significance but may not be fully aligned or optimized.";
   }
 
-  return {
+  const classified = {
     ...item,
     classification,
     trashReason,
     justification,
     score: parseFloat(score.toFixed(2)),
   };
+  console.log(classified);
+  return classified;
 };
