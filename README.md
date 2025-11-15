@@ -92,12 +92,3 @@ This project is structured to later incorporate AI for:
 ## 📜 License
 
 MIT License
-
-```
-
----
-```
-
-```
-
-```
