@@ -58,17 +58,21 @@
   font-size: 16px;
 }
 
-/* Tooltip text wrapping for mobile / smaller screens */
-[data-tooltip-id] {
-  white-space: normal; /* allow text to wrap */
-  word-wrap: break-word; /* break long words if needed */
+/* Tooltip text wrapping for react-tooltip */
+.react-tooltip {
   max-width: 220px; /* limit width on desktop */
+  white-space: normal; /* allow wrapping */
+  word-wrap: break-word; /* break long words if needed */
+  text-align: left; /* optional, align left */
+  font-size: 0.9rem; /* slightly smaller font */
+  padding: 0.5rem; /* optional padding */
 }
 
 /* Mobile-specific adjustments */
 @media (max-width: 768px) {
-  [data-tooltip-id] {
+  .react-tooltip {
     max-width: 70vw; /* tooltip width adapts to viewport */
+    white-space: normal;
     word-wrap: break-word;
   }
 }
@@ -197,9 +201,6 @@
 }
 
 /* Dropdown styling */
-/* Dropdown full width like other inputs */
-/*  */
-
 .item-form select {
   width: 100%; /* full width like other inputs */
   flex: none; /* remove flex shrinking */
@@ -217,17 +218,5 @@
 @media (max-width: 768px) {
   .item-form select {
     width: 100%;
-  }
-
-  [data-tooltip-id] {
-    max-width: 70vw;
-  }
-}
-
-/* Mobile-specific adjustments */
-@media (max-width: 768px) {
-  [data-tooltip-id] {
-    max-width: 70vw; /* tooltip width adapts to viewport */
-    word-wrap: break-word;
   }
 }
