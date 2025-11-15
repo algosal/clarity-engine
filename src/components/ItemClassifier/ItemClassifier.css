@@ -213,6 +213,53 @@
   appearance: none;
   cursor: pointer;
 }
+/* Save section: matches form input spacing */
+.save-section {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.save-buttons {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+/* Optional: different hover for clear button */
+.clear-button:hover {
+  background-color: #ff4d4f;
+  color: #fff;
+}
+
+/* Save button same style as classify button */
+.item-form-button {
+  padding: 0.75rem;
+  font-weight: 600;
+  color: #0a0f24;
+  background-color: #00ffff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.item-form-button:hover {
+  background-color: #ffd700;
+  color: #0a0f24;
+}
+
+/* Recommended principle input matches other inputs */
+.save-section input[type="text"] {
+  width: 100%;
+  padding: 0.5rem;
+  border-radius: 6px;
+  border: 1px solid #00ffff;
+  background-color: #1f2a48;
+  color: #f8f9fc;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
 
 /* Keep mobile adjustment */
 @media (max-width: 768px) {

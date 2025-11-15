@@ -1,7 +1,19 @@
-/* src/App.css */
+/* Hide scrollbar for WebKit browsers */
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
 
-/* Reset and base styling */
+/* Hide scrollbar for Firefox and IE */
 * {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+/* Reset & base styling */
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -13,27 +25,16 @@ body,
 .App {
   height: 100%;
   width: 100%;
-  overflow-x: hidden; /* no horizontal scrollbar */
-  background-color: #0a0f24; /* dark, clean background */
+  overflow-x: hidden;
+  background-color: #0a0f24;
   font-family: "Inter", sans-serif;
   color: #f8f9fc;
   line-height: 1.6;
 }
-/* Hide scrollbar for WebKit browsers */
-::-webkit-scrollbar {
-  width: 0px;
-  background: transparent; /* optional: just to be safe */
-}
 
-/* Hide scrollbar for Firefox */
-* {
-  scrollbar-width: none;
-  -ms-overflow-style: none; /* IE 10+ */
-}
-
-/* Optional: still allow scrolling */
+/* Ensure vertical scrolling */
 body {
-  overflow: auto;
+  overflow-y: auto;
 }
 
 /* App container */
@@ -41,31 +42,27 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 2rem;
-  min-height: 100vh; /* allows scrolling if content overflows vertically */
+  width: 100%;
 }
 
-/* Scrollbar styling (optional, clean and minimal) */
+/* Scrollbar styling */
 body::-webkit-scrollbar {
   width: 8px;
 }
-
 body::-webkit-scrollbar-track {
   background: #0a0f24;
 }
-
 body::-webkit-scrollbar-thumb {
   background-color: #00ffff;
   border-radius: 4px;
   border: 2px solid #0a0f24;
 }
 
-/* Links and interactive elements */
+/* Links */
 a {
   color: #ffd700;
   text-decoration: none;
 }
-
 a:hover {
   color: #00ffff;
   transition: color 0.2s ease-in-out;
@@ -87,26 +84,23 @@ p {
   color: #f8f9fc;
 }
 
-/* Clean container styling */
+/* Clean container */
 .container {
   max-width: 1200px;
   width: 100%;
   padding: 1rem;
 }
 
-/* Optional utility classes */
+/* Utility classes */
 .text-cyan {
   color: #00ffff;
 }
-
 .text-gold {
   color: #ffd700;
 }
-
 .text-center {
   text-align: center;
 }
-
 .mt-1 {
   margin-top: 0.5rem;
 }
@@ -119,7 +113,6 @@ p {
 .mt-4 {
   margin-top: 2rem;
 }
-
 .mb-1 {
   margin-bottom: 0.5rem;
 }

@@ -2,34 +2,46 @@
 
 export const sampleItems = [
   {
-    name: "Old Receipt",
-    description: "A crumpled receipt from 2019",
-    value: 0,
-    emotionalAttachment: 0.1, // very low attachment
-    alignment: 0.0, // completely misaligned
-    easilyRebuyable: true, // can easily be reissued if needed
-    classification: null,
-    trashReason: null,
+    name: "Old Eraser",
+    description: "Item is an old eraser and is useless now",
+    value: 0.1,
+    emotionalAttachment: 0,
+    alignment: 0.1,
+    easilyRebuyable: true,
+    classification: "Trash",
+    trashReason: "Low value and easily rebuyable",
+    justification:
+      "Although it may hold some attachment, the item is low value and can be easily replaced, so it is safe to discard.",
+    score: 0.37,
+    recommendedPrinciple: "Must throw trash",
   },
   {
     name: "Unused Notebook",
     description: "Notebook kept from last year, never opened",
     value: 1,
-    emotionalAttachment: 0.6, // moderate attachment
-    alignment: 0.5, // somewhat misaligned
-    easilyRebuyable: true, // could be replaced if needed
-    classification: null,
-    trashReason: null,
+    emotionalAttachment: 0.6,
+    alignment: 0.5,
+    easilyRebuyable: true,
+    classification: "Clutter",
+    trashReason: "Not immediately useful",
+    justification:
+      "Notebook has some potential value, but since it's never used, it adds clutter. Keep only if needed soon.",
+    score: 0.55,
+    recommendedPrinciple: "Keep functional clutter if useful soon",
   },
   {
     name: "Gift Mug",
     description: "Mug from a friend, rarely used",
     value: 1,
-    emotionalAttachment: 0.8, // high attachment
-    alignment: 0.4, // slightly misaligned
-    easilyRebuyable: true, // can rebuy if lost
-    classification: null,
-    trashReason: null,
+    emotionalAttachment: 0.8,
+    alignment: 0.4,
+    easilyRebuyable: true,
+    classification: "Clutter",
+    trashReason: "Rarely used but sentimental",
+    justification:
+      "Item holds sentimental value, so it is kept despite low usage.",
+    score: 0.65,
+    recommendedPrinciple: "Keep sentimental items selectively",
   },
   {
     name: "Old Phone Charger",
@@ -38,8 +50,12 @@ export const sampleItems = [
     emotionalAttachment: 0.2,
     alignment: 0.3,
     easilyRebuyable: true,
-    classification: null,
-    trashReason: null,
+    classification: "Trash",
+    trashReason: "Low value and replaceable",
+    justification:
+      "Since it is rarely used and easily replaced, it can be discarded safely.",
+    score: 0.3,
+    recommendedPrinciple: "Discard low-value easily rebuyable items",
   },
   {
     name: "Stack of Magazines",
@@ -48,18 +64,26 @@ export const sampleItems = [
     emotionalAttachment: 0.4,
     alignment: 0.2,
     easilyRebuyable: false,
-    classification: null,
-    trashReason: null,
+    classification: "Clutter",
+    trashReason: "Occupies space, low value",
+    justification:
+      "Magazines are not functional, but could have reference value. Consider keeping selectively.",
+    score: 0.45,
+    recommendedPrinciple: "Limit non-functional items taking space",
   },
   {
     name: "Kitchen Knife Set",
     description: "High-quality knives, occasionally used",
     value: 1,
     emotionalAttachment: 0.3,
-    alignment: 0.8, // mostly well-placed
+    alignment: 0.8,
     easilyRebuyable: false,
-    classification: null,
+    classification: "Keep",
     trashReason: null,
+    justification:
+      "Essential functional items should be kept even if occasionally used.",
+    score: 0.85,
+    recommendedPrinciple: "Keep functional essential items",
   },
   {
     name: "Decorative Vase",
@@ -68,7 +92,11 @@ export const sampleItems = [
     emotionalAttachment: 0.7,
     alignment: 0.2,
     easilyRebuyable: true,
-    classification: null,
-    trashReason: null,
+    classification: "Clutter",
+    trashReason: "Rarely used, mainly aesthetic",
+    justification:
+      "Vase is mostly decorative, consider if space is constrained.",
+    score: 0.5,
+    recommendedPrinciple: "Keep decorative items selectively",
   },
 ];

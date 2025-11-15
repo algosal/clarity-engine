@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import TrashClutterDefinition from "../TrashClutterDefinition/TrashClutterDefinition";
 import ItemClassifier from "../ItemClassifier/ItemClassifier";
+import Stats from "../Stats/Stats";
 import "./Dashboard.css";
 
 const Dashboard = () => {
@@ -13,6 +14,11 @@ const Dashboard = () => {
     { key: "summary", label: "Summary / Stats" },
   ];
 
+  const handleModuleClick = (key) => {
+    setActiveModule(key);
+    setModalOpen(false);
+  };
+
   const renderModule = () => {
     switch (activeModule) {
       case "definitions":
@@ -20,9 +26,7 @@ const Dashboard = () => {
       case "classifier":
         return <ItemClassifier />;
       case "summary":
-        return (
-          <div className="placeholder">Summary / Stats Module Coming Soon</div>
-        );
+        return <Stats />;
       default:
         return (
           <div className="dashboard-welcome">
@@ -33,34 +37,32 @@ const Dashboard = () => {
     }
   };
 
-  const handleModuleClick = (key) => {
-    setActiveModule(key);
-    setModalOpen(false); // close modal after selection
-  };
-
   return (
-    <div className="dashboard-container">
-      <h1 className="dashboard-title">Clarity Engine Dashboard</h1>
+    <div className="dashboard-page">
+      {/* Sticky full-width Navbar */}
+      <header className="dashboard-navbar">
+        <h1 className="dashboard-title">Clarity Engine Dashboard</h1>
 
-      {/* Hamburger icon for mobile */}
-      <div className="hamburger-icon" onClick={() => setModalOpen(true)}>
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
+        {/* Desktop buttons */}
+        <div className="dashboard-buttons">
+          {modules.map((mod) => (
+            <button
+              key={mod.key}
+              onClick={() => handleModuleClick(mod.key)}
+              className={activeModule === mod.key ? "active" : ""}
+            >
+              {mod.label}
+            </button>
+          ))}
+        </div>
 
-      {/* Desktop buttons */}
-      <div className="dashboard-buttons">
-        {modules.map((mod) => (
-          <button
-            key={mod.key}
-            onClick={() => handleModuleClick(mod.key)}
-            className={activeModule === mod.key ? "active" : ""}
-          >
-            {mod.label}
-          </button>
-        ))}
-      </div>
+        {/* Hamburger icon for mobile */}
+        <div className="hamburger-icon" onClick={() => setModalOpen(true)}>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </header>
 
       {/* Modal for mobile */}
       {modalOpen && (
@@ -79,7 +81,8 @@ const Dashboard = () => {
         </div>
       )}
 
-      <div className="module-container">{renderModule()}</div>
+      {/* Main scrollable content */}
+      <main className="module-container">{renderModule()}</main>
     </div>
   );
 };

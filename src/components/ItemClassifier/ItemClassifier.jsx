@@ -15,6 +15,7 @@ const ItemClassifier = () => {
     alignment: 1,
     easilyRebuyable: false,
   });
+  const [recommendedPrinciple, setRecommendedPrinciple] = useState("");
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -36,7 +37,22 @@ const ItemClassifier = () => {
       alignment: 1,
       easilyRebuyable: false,
     });
+    setRecommendedPrinciple(""); // clear principle input for next item
   };
+
+  const handleSaveLatest = () => {
+    if (items.length === 0) return;
+    const latestItem = items[items.length - 1];
+    const payload = {
+      ...latestItem,
+      recommendedPrinciple: recommendedPrinciple || null,
+    };
+    console.log("Saved item:", payload);
+    alert("Latest item saved! Check console for result.");
+  };
+
+  const latestItemExists = items.length > 0;
+  const latestItem = latestItemExists ? items[items.length - 1] : null;
 
   return (
     <div className="classifier-container">
@@ -66,7 +82,7 @@ const ItemClassifier = () => {
             Functional Value (0-1)
             <span
               data-tooltip-id="tooltip-functional"
-              data-tooltip-content="0 = completely useless, 1 = fully functional. Note: even high-value items are pragmatically nonfunctional if you are not using them."
+              data-tooltip-content="0 = completely useless, 1 = fully functional. Even high-value items are pragmatically nonfunctional if you are not using them."
             >
               ℹ️
             </span>
@@ -90,7 +106,7 @@ const ItemClassifier = () => {
             Emotional Attachment (0-1)
             <span
               data-tooltip-id="tooltip-emotional"
-              data-tooltip-content="0 = no attachment, 1 = very attached. Attachment reflects ego, nostalgia, or unresolved emotional ties — not always practical."
+              data-tooltip-content="0 = no attachment, 1 = very attached. Reflects ego, nostalgia, or unresolved emotional ties — not always practical."
             >
               ℹ️
             </span>
@@ -114,7 +130,7 @@ const ItemClassifier = () => {
             Alignment (0-1)
             <span
               data-tooltip-id="tooltip-alignment"
-              data-tooltip-content="0 = completely misaligned, 1 = perfectly aligned. Alignment measures how well the item fits your current environment, priorities, and purpose."
+              data-tooltip-content="0 = completely misaligned, 1 = perfectly aligned. Measures how well the item fits your current environment, priorities, and purpose."
             >
               ℹ️
             </span>
@@ -132,7 +148,6 @@ const ItemClassifier = () => {
         </label>
         <Tooltip id="tooltip-alignment" place="right" variant="dark" />
 
-        {/* Easily Rebuyable */}
         {/* Easily Rebuyable */}
         <label>
           <div className="label-text">
@@ -167,29 +182,65 @@ const ItemClassifier = () => {
         {items.length === 0 ? (
           <p>No items classified yet.</p>
         ) : (
-          items.map((item, index) => (
-            <div
-              key={index}
-              className={`item-card ${item.classification?.toLowerCase()}`}
-            >
-              <h3>{item.name}</h3>
-              <p>{item.description}</p>
-              <p>
-                <strong>Classification:</strong> {item.classification}
-              </p>
-              {item.trashReason && (
+          <>
+            {items.map((item, index) => (
+              <div
+                key={index}
+                className={`item-card ${item.classification?.toLowerCase()}`}
+              >
+                <h3>{item.name}</h3>
+                <p>{item.description}</p>
                 <p>
-                  <strong>Reason:</strong> {item.trashReason}
+                  <strong>Classification:</strong> {item.classification}
                 </p>
-              )}
-              <p>
-                <strong>Score:</strong> {item.score}
-              </p>
-              <p>
-                <strong>Justification:</strong> {item.justification}
-              </p>
-            </div>
-          ))
+                {item.trashReason && (
+                  <p>
+                    <strong>Reason:</strong> {item.trashReason}
+                  </p>
+                )}
+                <p>
+                  <strong>Score:</strong> {item.score}
+                </p>
+                <p>
+                  <strong>Justification:</strong> {item.justification}
+                </p>
+              </div>
+            ))}
+
+            {/* Recommended Principle & Save under last item */}
+            {/* Recommended Principle & Save under last item */}
+            {latestItem && (
+              <div className="save-section">
+                <label>
+                  <div className="label-text">Recommended Principle</div>
+                  <input
+                    type="text"
+                    placeholder="Optional: write a principle for this item"
+                    value={recommendedPrinciple}
+                    onChange={(e) => setRecommendedPrinciple(e.target.value)}
+                  />
+                </label>
+
+                <div className="save-buttons">
+                  <button
+                    className="item-form-button"
+                    onClick={handleSaveLatest}
+                  >
+                    Save Latest Item
+                  </button>
+                  <button
+                    className="item-form-button clear-button"
+                    onClick={() => {
+                      setItems([]);
+                      setRecommendedPrinciple("");
+                    }}
+                  >
+                    Clear All Items
+                  </button>
+                </div>
+              </div>
+            )}
+          </>
         )}
       </div>
     </div>
